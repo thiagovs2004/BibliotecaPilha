@@ -73,4 +73,91 @@ void retiraImpares(tp_pilha *p){
         push(p, e);
     }
 }
+
+int comparaPilha(tp_pilha p1, tp_pilha p2){
+    tp_item e1, e2;
+    if(alturaPilha(&p1) != alturaPilha(&p2))
+        return 0;
+    while(!pilhaVazia(&p1)){
+        pop(&p1, &e1);
+        pop(&p2, &e2);
+        if(e1 != e2)
+            return 0;
+    }
+    return 1;
+}
 #endif
+
+int main(){
+
+     //Utilizando a função push e pop para adicionar e remover elementos da pilha:
+     tp_pilha p1;
+     tp_item e; //tipo item deve ser declarado para armazenar um elemento removido pela funcao pop
+     inicializaPilha(&p1);
+ 
+     push(&p1, 10);
+     push(&p1, 20);
+     push(&p1, 30);
+     push(&p1, 40);
+     push(&p1, 50);
+ 
+     printf("Pilha antes de utilizar a funcao pop: ");
+     imprimePilha(p1);
+ 
+     pop(&p1, &e);
+     pop(&p1, &e);
+     printf("\nPilha apos a funcao pop ser utilizada removendo dois elementos do topo: ");
+     imprimePilha(p1);
+ 
+     printf("\n\n----------------------------------------");
+     //Utilizando a funcao removeImpares
+     tp_pilha p2;
+     inicializaPilha(&p2);
+     push(&p2, 1);
+     push(&p2, 2);
+     push(&p2, 3);
+     push(&p2, 4);
+     push(&p2, 5);
+     push(&p2, 6);
+     push(&p2, 7);
+     printf("\n\nPilha antes de utilizar a funcao removeImpares: ");
+     imprimePilha(p2);
+     
+     retiraImpares(&p2);
+     printf("\nPilha apos usar funcao removeImpares: ");
+     imprimePilha(p2);
+     
+     printf("\n\n-------------------------------------");
+     //Utilzando a funcao para comparar duas pilhas
+     tp_pilha p3, p4;
+     inicializaPilha(&p3);
+     inicializaPilha(&p4);
+     char pilhasiguais;
+     
+     push(&p3, 10);
+     push(&p3, 20);
+     push(&p3, 30);
+     push(&p3, 40);
+     push(&p3, 50);
+     
+     push(&p4, 10);
+     push(&p4, 20);
+     push(&p4, 30);
+     push(&p4, 40);
+     push(&p4, 50);
+     
+     printf("\n");
+     
+     printf("Pilha1: ");
+     imprimePilha(p3);
+     printf("\nPilha2: ");
+     imprimePilha(p4);
+     printf("\n\n");
+     pilhasiguais = comparaPilha(p3, p4);
+     if(pilhasiguais == 1){
+     printf("As pilhas sao iguais\n");
+     }
+     else{
+         printf("As pilhas sao diferentes.\n");
+     }
+}
